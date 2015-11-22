@@ -46,9 +46,9 @@ class Paranoid:
 		self.calculateTime = time.time()
 		node = None
 		if len(cardInGround) == 0:
-			node = self.ParanoidTree(paranoidHand, opponentHand, [], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [15000], self.isPlayHeart)
+			node = self.ParanoidTree(paranoidHand, opponentHand, [], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [40000], self.isPlayHeart)
 		else:
-			node = self.ParanoidTree(paranoidHand, opponentHand, [cardInGround[0][0]], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [20000], self.isPlayHeart)
+			node = self.ParanoidTree(paranoidHand, opponentHand, [cardInGround[0][0]], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [40000], self.isPlayHeart)
 		retcard = None
 		for child in node.childNodes:
 			if child.v == node.v:
@@ -62,9 +62,9 @@ class Paranoid:
 
 	def lookAheadLookup(self):
 		if self.round > 7:
-			return 3
-		else:
 			return 4
+		else:
+			return 6
 
 	def setAsPlay(self,card):
 		card.isPlayed=True

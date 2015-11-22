@@ -47,13 +47,13 @@ class Max:
 		node = None
 		
 		if self.locationInPlayedCard == 0:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].result,Players[1].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].result,Players[1].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
 		elif self.locationInPlayedCard == 1:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[1].result,Players[0].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[1].result,Players[0].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
 		elif self.locationInPlayedCard == 2:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[2].result,Players[1].result,Players[0].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[2].result,Players[1].result,Players[0].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
 		else:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[3].result,Players[1].result,Players[2].result,Players[0].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[3].result,Players[1].result,Players[2].result,Players[0].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
 
 		retcard = None
 		for child in node.childNodes:
@@ -69,9 +69,9 @@ class Max:
 
 	def lookAheadLookup(self):
 		if self.round > 7:
-			return 4
+			return 8
 		else:
-			return 5
+			return 12
 
 	def setAsPlay(self,card):
 		card.isPlayed=True
@@ -126,6 +126,8 @@ class Max:
 			playableCards = self.playablePlayerCards(maxHand, len(playedCards) == 0, None if len(playedCards) == 0 else playedCards[0], heartsPlayed)
 
 		for card in playableCards:
+			if nodeDepth[0] < 1:
+				break
 			newPlayed = list(playedCards)
 			newPlayed.append(card)
 			newNode = None
