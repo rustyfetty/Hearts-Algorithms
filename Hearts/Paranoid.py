@@ -75,30 +75,6 @@ class Paranoid:
 	def getCard(self,index):        
 		return self.cardsInHand[index]
 
-	def moveCard(self,index,x,y):
-		self.cardsInHand[index].moveCard(x,y)
-				
-	def showCard(self,index,screen):
-		background=self.getCardImg(index)
-		screen.blit(background, (self.cardsInHand[index].rect))
-		
-	def moveAndShowCard(self,index,x,y,screen):
-		self.moveCard(index, x, y)
-		self.showCard(index, screen)
-
-		
-	def refreshHand(self,screen):
-		for i in range(0,13):
-			if self.cardsInHand[i].isPlayed==False:
-				self.showCard(i, screen)
-			elif self.currentPlay!=None :
-				if self.currentPlay.index==i:
-					self.showCard(i, screen)
-
-	def getCardImg(self,index):                
-		cardimg,cardrct=self.cardsInHand[index].getfrontImage()
-		return cardimg
-
 	def hastThisType(self,type):   
 		for i in range(0,13):
 			if self.cardsInHand[i].isPlayed==False:
@@ -178,6 +154,8 @@ class Paranoid:
 			order = comb[1]
 
 			for cards in playable:
+				if nodeDepth[0] < 1:
+					break
 				newNode = ParanoidNode(True, None, node.score, 26, node.alpha, node.beta)
 				played = list(playedCards)
 				hand = list(opponentHand)
@@ -195,7 +173,7 @@ class Paranoid:
 						node.alpha = node.v
 					if node.v > node.beta:	#if bigger than best min value then return. the max node can only get bigger, and the min node will never take it, because it already has something smaller
 						return node
-				elif newNode.roundWinner == 0 and nodeDepth[0] > 0:
+				elif newNode.roundWinner == 0:
 					nodeDepth[0] -= 1
 					self.ParanoidTree(paranoidHand, hand, [], newNode, depth - 1, nodeDepth, heartsPlayed or card.type == cardType.Hearts)
 					if node.childNodes[len(node.childNodes) - 1].v > node.v:	#alphabeta pruning
@@ -203,7 +181,7 @@ class Paranoid:
 						node.alpha = node.v
 					if node.v > node.beta:	#if bigger than best min value then return. the max node can only get bigger, and the min node will never take it, because it already has something smaller
 						return node
-				elif nodeDepth[0] > 0:
+				else:
 					howManyCardsShouldOppPlay = [3,2,1]
 					beginRound = self.getOpponentCombinations(hand, howManyCardsShouldOppPlay[newNode.roundWinner - 1])[0]
 					for played in beginRound:

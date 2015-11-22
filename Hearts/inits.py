@@ -18,7 +18,8 @@
 #You should have received a copy of the GNU General Public License
 #along with this program; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-import os, pygame,math
+import os, math
+
 class cardType:
 	Hearts=1
 	Spades=2
@@ -39,44 +40,18 @@ class cardNumber:
 	jack=10
 	queen=11
 	king=12
-    
-
-    
-def load_image(name, colorkey=None):
-	fullname = os.path.join('data/img', name)
-
-	try:
-		image=pygame.image.load(fullname)
-		image=image.convert()
-		if colorkey is not None:
-			if colorkey is -1:
-				colorkey = image.get_at((0,0))
-			image.set_colorkey(colorkey, RLEACCEL)
-		return image, image.get_rect()
-	except pygame.error, message:
-		print 'Cannot load image:', name
-		raise SystemExit, message
 
 class card:
-	def __init__(self,name,type,priority,image,x=0,y=0):
+	def __init__(self,name,type,priority,x=0,y=0):
 		self.name=name
 		self.type=type
 		self.priority=priority
 		self.use=False
-		self.fimg,tmp=load_image(image)
-		self.bimg,tmp=load_image("b.gif")
-		self.img,self.rect = load_image("b.gif")
-		#print self.rect
-		#print self.rect.collidepoint(0, 0)
 		self.isPlayed=False
-		self.rect.x = x
-		self.rect.y = y        
 		self.side = 0
 		self.index=0
 
-	def moveCard(self,x,y):
-		self.rect.x=x
-		self.rect.y=y
+
 	def getfrontImage(self):
 		return self.fimg,self.rect
 	def getImage(self):

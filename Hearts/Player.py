@@ -20,7 +20,7 @@
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
-from inits import  *
+from inits import *
 from random import randint
 
 class Player:
@@ -54,10 +54,6 @@ class Player:
 			self.has2Clubs=True
 		if card.name==cardNumber.queen and card.type==cardType.Spades:
 			self.hasQueenSpades=True
-
-	def analayzPlayer(self,playedCard):
-		for cards in playedCard:
-			pass
 			
 	def play(self,cardInGround,playedCard,Players):
 		cardsLeft = []
@@ -125,54 +121,12 @@ class Player:
 		if card.name==cardNumber.queen and cardType.Spades==card.type:
 			self.hasQueenSpades=False
 		return card
-
-	def sortHande(self):
-
-		for i in range(0,13):
-			for j in range(0,13):
-				if(self.cardsInHand[i].type>self.cardsInHand[j].type):
-					tmp=self.cardsInHand[i]
-					#self.cardsInHand[i]=None
-					self.cardsInHand[i]=self.cardsInHand[j]
-					#self.cardsInHand[j]=None
-					self.cardsInHand[j]=tmp
-				elif(self.cardsInHand[i].type==self.cardsInHand[j].type):
-					if(self.cardsInHand[i].name<self.cardsInHand[j].name):
-						tmp=self.cardsInHand[i]
-						self.cardsInHand[i]=self.cardsInHand[j]
-						self.cardsInHand[j]=tmp
-						pass
 	
 	def playAgain(self):
 		self.cardsInHand=[]
 			
 	def getCard(self,index):        
 		return self.cardsInHand[index]
-
-	def moveCard(self,index,x,y):
-		self.cardsInHand[index].moveCard(x,y)
-				
-	def showCard(self,index,screen):
-		background=self.getCardImg(index)
-		screen.blit(background, (self.cardsInHand[index].rect))
-		
-	def moveAndShowCard(self,index,x,y,screen):
-		self.moveCard(index, x, y)
-		self.showCard(index, screen)
-
-		
-	def refreshHand(self,screen):
-		for i in range(0,13):
-			if self.cardsInHand[i].isPlayed==False:
-				self.showCard(i, screen)
-			elif self.currentPlay!=None :
-				if self.currentPlay.index==i:
-					self.showCard(i, screen)
-				
-	
-	def getCardImg(self,index):                
-		cardimg,cardrct=self.cardsInHand[index].getfrontImage()
-		return cardimg
 	
 	def hastThisType(self,type):   
 		for i in range(0,13):

@@ -1,4 +1,4 @@
-from inits import  *
+﻿from inits import  *
 
 class Max:
 
@@ -43,7 +43,7 @@ class Max:
 				self.isPlayHeart = True
 		node = None
 		
-		node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (0,0,0,0), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+		node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].tmpResult,Players[1].tmpResult,Players[2].tmpResult,Players[3].tmpResult), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
 		retcard = None
 		for child in node.childNodes:
 			if child.valueTaken == node.valueTaken:
@@ -72,30 +72,6 @@ class Max:
 			
 	def getCard(self,index):        
 		return self.cardsInHand[index]
-
-	def moveCard(self,index,x,y):
-		self.cardsInHand[index].moveCard(x,y)
-				
-	def showCard(self,index,screen):
-		background=self.getCardImg(index)
-		screen.blit(background, (self.cardsInHand[index].rect))
-		
-	def moveAndShowCard(self,index,x,y,screen):
-		self.moveCard(index, x, y)
-		self.showCard(index, screen)
-
-		
-	def refreshHand(self,screen):
-		for i in range(0,13):
-			if self.cardsInHand[i].isPlayed==False:
-				self.showCard(i, screen)
-			elif self.currentPlay!=None :
-				if self.currentPlay.index==i:
-					self.showCard(i, screen)
-
-	def getCardImg(self,index):                
-		cardimg,cardrct=self.cardsInHand[index].getfrontImage()
-		return cardimg
 
 	def hastThisType(self,type):   
 		for i in range(0,13):

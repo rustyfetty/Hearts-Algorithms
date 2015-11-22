@@ -20,11 +20,8 @@
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #Read more about GNU General Public License :http://www.gnu.org/licenses/gpl.txt
 import random
-import os, pygame,math
-from pygame.locals import *
+import os,math
 from inits import *
-
-	   
 	  
 class cards:
     
@@ -33,66 +30,65 @@ class cards:
 		self.cardItem = []
 		#add Hearsts cards
 		
-		self.cardItem.append(card(cardNumber.Ace,cardType.Hearts,13,"ah.gif"))
-		#self.cardItem[0]=card(cardNumber.Ace,cardType.Hearts,13,"ah.gif")
+		self.cardItem.append(card(cardNumber.Ace,cardType.Hearts,13))
 		
-		self.cardItem.append(card(cardNumber.num2,cardType.Hearts,1,"2h.gif"))
-		self.cardItem.append(card(cardNumber.num3,cardType.Hearts,2,"3h.gif"))
-		self.cardItem.append(card(cardNumber.num4,cardType.Hearts,3,"4h.gif"))
-		self.cardItem.append(card(cardNumber.num5,cardType.Hearts,4,"5h.gif"))
-		self.cardItem.append(card(cardNumber.num6,cardType.Hearts,5,"6h.gif"))
-		self.cardItem.append(card(cardNumber.num7,cardType.Hearts,6,"7h.gif"))
-		self.cardItem.append(card(cardNumber.num8,cardType.Hearts,7,"8h.gif"))
-		self.cardItem.append(card(cardNumber.num9,cardType.Hearts,8,"9h.gif"))
-		self.cardItem.append(card(cardNumber.num10,cardType.Hearts,9,"th.gif"))
-		self.cardItem.append(card(cardNumber.jack,cardType.Hearts,10,"jh.gif"))
-		self.cardItem.append(card(cardNumber.queen,cardType.Hearts,11,"qh.gif"))
-		self.cardItem.append(card(cardNumber.king,cardType.Hearts,12,"kh.gif"))
+		self.cardItem.append(card(cardNumber.num2,cardType.Hearts,1))
+		self.cardItem.append(card(cardNumber.num3,cardType.Hearts,2))
+		self.cardItem.append(card(cardNumber.num4,cardType.Hearts,3))
+		self.cardItem.append(card(cardNumber.num5,cardType.Hearts,4))
+		self.cardItem.append(card(cardNumber.num6,cardType.Hearts,5))
+		self.cardItem.append(card(cardNumber.num7,cardType.Hearts,6))
+		self.cardItem.append(card(cardNumber.num8,cardType.Hearts,7))
+		self.cardItem.append(card(cardNumber.num9,cardType.Hearts,8))
+		self.cardItem.append(card(cardNumber.num10,cardType.Hearts,9))
+		self.cardItem.append(card(cardNumber.jack,cardType.Hearts,10))
+		self.cardItem.append(card(cardNumber.queen,cardType.Hearts,11))
+		self.cardItem.append(card(cardNumber.king,cardType.Hearts,12))
 		
 		#add Spades cards
-		self.cardItem.append(card(cardNumber.Ace,cardType.Spades,13,"as.gif"))
-		self.cardItem.append(card(cardNumber.num2,cardType.Spades,1,"2s.gif"))
-		self.cardItem.append(card(cardNumber.num3,cardType.Spades,2,"3s.gif"))
-		self.cardItem.append(card(cardNumber.num4,cardType.Spades,3,"4s.gif"))
-		self.cardItem.append(card(cardNumber.num5,cardType.Spades,4,"5s.gif"))
-		self.cardItem.append(card(cardNumber.num6,cardType.Spades,5,"6s.gif"))
-		self.cardItem.append(card(cardNumber.num7,cardType.Spades,6,"7s.gif"))
-		self.cardItem.append(card(cardNumber.num8,cardType.Spades,7,"8s.gif"))
-		self.cardItem.append(card(cardNumber.num9,cardType.Spades,8,"9s.gif"))
-		self.cardItem.append(card(cardNumber.num10,cardType.Spades,9,"ts.gif"))
-		self.cardItem.append(card(cardNumber.jack,cardType.Spades,10,"js.gif"))
-		self.cardItem.append(card(cardNumber.queen,cardType.Spades,11,"qs.gif"))
-		self.cardItem.append(card(cardNumber.king,cardType.Spades,12,"ks.gif"))
+		self.cardItem.append(card(cardNumber.Ace,cardType.Spades,13))
+		self.cardItem.append(card(cardNumber.num2,cardType.Spades,1))
+		self.cardItem.append(card(cardNumber.num3,cardType.Spades,2))
+		self.cardItem.append(card(cardNumber.num4,cardType.Spades,3))
+		self.cardItem.append(card(cardNumber.num5,cardType.Spades,4))
+		self.cardItem.append(card(cardNumber.num6,cardType.Spades,5))
+		self.cardItem.append(card(cardNumber.num7,cardType.Spades,6))
+		self.cardItem.append(card(cardNumber.num8,cardType.Spades,7))
+		self.cardItem.append(card(cardNumber.num9,cardType.Spades,8))
+		self.cardItem.append(card(cardNumber.num10,cardType.Spades,9))
+		self.cardItem.append(card(cardNumber.jack,cardType.Spades,10))
+		self.cardItem.append(card(cardNumber.queen,cardType.Spades,11))
+		self.cardItem.append(card(cardNumber.king,cardType.Spades,12))
 		
 		#add Daimond cards
-		self.cardItem.append(card(cardNumber.Ace,cardType.Daimond,13,"ad.gif"))
-		self.cardItem.append(card(cardNumber.num2,cardType.Daimond,1,"2d.gif"))
-		self.cardItem.append(card(cardNumber.num3,cardType.Daimond,2,"3d.gif"))
-		self.cardItem.append(card(cardNumber.num4,cardType.Daimond,3,"4d.gif"))
-		self.cardItem.append(card(cardNumber.num5,cardType.Daimond,4,"5d.gif"))
-		self.cardItem.append(card(cardNumber.num6,cardType.Daimond,5,"6d.gif"))
-		self.cardItem.append(card(cardNumber.num7,cardType.Daimond,6,"7d.gif"))
-		self.cardItem.append(card(cardNumber.num8,cardType.Daimond,7,"8d.gif"))
-		self.cardItem.append(card(cardNumber.num9,cardType.Daimond,8,"9d.gif"))
-		self.cardItem.append(card(cardNumber.num10,cardType.Daimond,9,"td.gif"))
-		self.cardItem.append(card(cardNumber.jack,cardType.Daimond,10,"jd.gif"))
-		self.cardItem.append(card(cardNumber.queen,cardType.Daimond,11,"qd.gif"))
-		self.cardItem.append(card(cardNumber.king,cardType.Daimond,12,"kd.gif"))      
+		self.cardItem.append(card(cardNumber.Ace,cardType.Daimond,13))
+		self.cardItem.append(card(cardNumber.num2,cardType.Daimond,1))
+		self.cardItem.append(card(cardNumber.num3,cardType.Daimond,2))
+		self.cardItem.append(card(cardNumber.num4,cardType.Daimond,3))
+		self.cardItem.append(card(cardNumber.num5,cardType.Daimond,4))
+		self.cardItem.append(card(cardNumber.num6,cardType.Daimond,5))
+		self.cardItem.append(card(cardNumber.num7,cardType.Daimond,6))
+		self.cardItem.append(card(cardNumber.num8,cardType.Daimond,7))
+		self.cardItem.append(card(cardNumber.num9,cardType.Daimond,8))
+		self.cardItem.append(card(cardNumber.num10,cardType.Daimond,9))
+		self.cardItem.append(card(cardNumber.jack,cardType.Daimond,10))
+		self.cardItem.append(card(cardNumber.queen,cardType.Daimond,11))
+		self.cardItem.append(card(cardNumber.king,cardType.Daimond,12))
 		
 		#add Clubs cards
-		self.cardItem.append(card(cardNumber.Ace,cardType.Clubs,13,"ac.gif"))
-		self.cardItem.append(card(cardNumber.num2,cardType.Clubs,1,"2c.gif"))
-		self.cardItem.append(card(cardNumber.num3,cardType.Clubs,2,"3c.gif"))
-		self.cardItem.append(card(cardNumber.num4,cardType.Clubs,3,"4c.gif"))
-		self.cardItem.append(card(cardNumber.num5,cardType.Clubs,4,"5c.gif"))
-		self.cardItem.append(card(cardNumber.num6,cardType.Clubs,5,"6c.gif"))
-		self.cardItem.append(card(cardNumber.num7,cardType.Clubs,6,"7c.gif"))
-		self.cardItem.append(card(cardNumber.num8,cardType.Clubs,7,"8c.gif"))
-		self.cardItem.append(card(cardNumber.num9,cardType.Clubs,8,"9c.gif"))
-		self.cardItem.append(card(cardNumber.num10,cardType.Clubs,9,"tc.gif"))
-		self.cardItem.append(card(cardNumber.jack,cardType.Clubs,10,"jc.gif"))
-		self.cardItem.append(card(cardNumber.queen,cardType.Clubs,11,"qc.gif"))
-		self.cardItem.append(card(cardNumber.king,cardType.Clubs,12,"kc.gif"))  
+		self.cardItem.append(card(cardNumber.Ace,cardType.Clubs,13))
+		self.cardItem.append(card(cardNumber.num2,cardType.Clubs,1))
+		self.cardItem.append(card(cardNumber.num3,cardType.Clubs,2))
+		self.cardItem.append(card(cardNumber.num4,cardType.Clubs,3))
+		self.cardItem.append(card(cardNumber.num5,cardType.Clubs,4))
+		self.cardItem.append(card(cardNumber.num6,cardType.Clubs,5))
+		self.cardItem.append(card(cardNumber.num7,cardType.Clubs,6))
+		self.cardItem.append(card(cardNumber.num8,cardType.Clubs,7))
+		self.cardItem.append(card(cardNumber.num9,cardType.Clubs,8))
+		self.cardItem.append(card(cardNumber.num10,cardType.Clubs,9))
+		self.cardItem.append(card(cardNumber.jack,cardType.Clubs,10))
+		self.cardItem.append(card(cardNumber.queen,cardType.Clubs,11))
+		self.cardItem.append(card(cardNumber.king,cardType.Clubs,12))  
 		
 		
 		#shuffle cards
@@ -119,10 +115,6 @@ class cards:
 		player3.notMyCards = player2.cardsInHand + player1.cardsInHand + player4.cardsInHand
 		player4.notMyCards = player2.cardsInHand + player3.cardsInHand + player1.cardsInHand
 
-pygame.init()
-
-My_Window = pygame.display.set_mode((640, 480))
- 
 s=cards()   
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 #Game developed by Milad Rastian (miladmovie atsign gmail dot com) 
 #https://gna.org/projects/pyhearts/
 #I wrote this Game for course Artificial Intelligent in Yazd Jahad University
@@ -24,3 +24,4 @@ import background
 
 #this calls the 'main' function when this script is executed
 if __name__ == '__main__': background.main() 
+
