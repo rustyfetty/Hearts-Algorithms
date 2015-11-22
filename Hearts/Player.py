@@ -22,6 +22,7 @@
 
 from inits import *
 from random import randint
+import time
 
 class Player:
 	
@@ -45,6 +46,7 @@ class Player:
 		self.result=0
 		self.tmpResult=0
 		self.notMyCards = []
+		self.calculateTime = 0
 
 		
 	def addHand(self,card):
@@ -63,6 +65,7 @@ class Player:
 		for card in cardInGround:
 			if card[0].type == cardType.Hearts:
 				self.isPlayHeart = True
+		self.calculateTime = time.time()
 
 		if len(cardInGround) == 0:
 			playable = self.playablePlayerCards(cardsLeft, True, None, self.isPlayHeart)
@@ -72,7 +75,8 @@ class Player:
 		retcard=playable[randint(0, len(playable) - 1)]
 		if retcard.type == cardType.Hearts:
 			self.isPlayHeart == True
-
+			
+		self.calculateTime = time.time() - self.calculateTime
 		return self.setAsPlay(retcard)
 				
 

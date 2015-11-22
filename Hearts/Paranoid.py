@@ -1,4 +1,5 @@
 ﻿from inits import  *
+import time
 
 class Paranoid:
 
@@ -18,6 +19,7 @@ class Paranoid:
 		self.tmpResult=0
 		self.notMyCards = []
 		self.round = 13
+		self.calculateTime = 0
 
 	def addHand(self,card):
 		self.cardsInHand.append(card)
@@ -41,6 +43,7 @@ class Paranoid:
 		for card in cardInGround:
 			if card[0].type == cardType.Hearts:
 				self.isPlayHeart = True
+		self.calculateTime = time.time()
 		node = None
 		if len(cardInGround) == 0:
 			node = self.ParanoidTree(paranoidHand, opponentHand, [], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [15000], self.isPlayHeart)
@@ -54,7 +57,7 @@ class Paranoid:
 
 		if retcard.type == cardType.Hearts:
 			self.isPlayHeart == True
-
+		self.calculateTime = time.time() - self.calculateTime
 		return self.setAsPlay(retcard)
 
 	def lookAheadLookup(self):

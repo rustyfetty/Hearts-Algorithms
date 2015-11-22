@@ -20,6 +20,7 @@
 #along with this program; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+from time import gmtime, strftime
 import os,math
 from Player import *
 from Paranoid import *
@@ -48,18 +49,24 @@ class background:
 		self.playerName.append("max")
 		self.playerName.append("rand1")
 		self.playerName.append("rand2")
+		self.directory = strftime("%a, %d %b %Y %H;%M;%S", gmtime())
+		os.makedirs(self.directory)
+		self.scoreFile = open(self.directory + "\score.csv", 'w')
+		self.timeFile = open(self.directory + "\\time.csv", 'w')
 	
 		#reset hands
 		self.playAgain()
 		self.emptyGround=False
 		
-		self.numOfDeckPlay=0         
+		self.numOfDeckPlay=0
 		self.players=[]
 		self.players.append(self.player1)
 		self.players.append(self.player2)
 		self.players.append(self.player3)
 		self.players.append(self.player4)
 
+		self.scoreFile.write(self.playerName[0] + "," + self.playerName[1] + "," + self.playerName[2] + "," + self.playerName[3] + "\n")
+		self.timeFile.write(self.playerName[0] + "," + self.playerName[1] + "," + self.playerName[2] + "," + self.playerName[3] + "\n")
 		indD=0
 		while 1:  
 			#change status of self.blink
@@ -102,6 +109,7 @@ class background:
 				print ""
 				print ""
 				print ""
+				self.scoreFile.write(str(self.player1.result) + "," + str(self.player2.result) + "," + str(self.player3.result) + "," + str(self.player4.result) + "\n")
 				self.scoreBoard.append([self.player1.result,self.player2.result,self.player3.result,self.player4.result])
 				self.ShowScoreBoardDialog=True
 				self.scoreBoardDialog()
@@ -117,11 +125,15 @@ class background:
 						self.players.append(self.player4)
 						self.emptyGround=False          
 						self.errorMsg=""
-						self.isPlayHeart=False                                    
+						self.isPlayHeart=False
+						self.scoreFile.write("\n")
 				else:
 					self.playAgain()
 				if self.gameNumber < self.numOfGames:
 					self.backToGame()
+				if self.gameNumber == self.numOfGames:
+					self.scoreFile.close()
+					self.timeFile.close()
 				continue
 			indD+=1
 			if self.turnPlay==1 and self.player1.currentPlay==None:
@@ -195,6 +207,7 @@ class background:
 					print cardBelongToPlayer.name," got ",result," point(s)"
 					print ""
 					cardBelongToPlayer=None
+					self.timeFile.write(str(self.player1.calculateTime) + "," + str(self.player2.calculateTime) + "," + str(self.player3.calculateTime) + "," + str(self.player4.calculateTime) + "\n")
 					
 				else:
 					print "Error ! report me now ! thanks"

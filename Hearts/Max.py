@@ -1,4 +1,5 @@
 ﻿from inits import  *
+import time
 
 class Max:
 
@@ -18,6 +19,7 @@ class Max:
 		self.tmpResult=0
 		self.notMyCards = []
 		self.round = 13
+		self.calculateTime = 0
 
 	def addHand(self,card):
 		self.cardsInHand.append(card)
@@ -41,6 +43,7 @@ class Max:
 		for card in cardInGround:
 			if card[0].type == cardType.Hearts:
 				self.isPlayHeart = True
+		self.calculateTime = time.time()
 		node = None
 		
 		if self.locationInPlayedCard == 0:
@@ -61,6 +64,7 @@ class Max:
 		if retcard.type == cardType.Hearts:
 			self.isPlayHeart == True
 
+		self.calculateTime = time.time() - self.calculateTime
 		return self.setAsPlay(retcard)
 
 	def lookAheadLookup(self):
