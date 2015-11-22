@@ -43,7 +43,15 @@ class Max:
 				self.isPlayHeart = True
 		node = None
 		
-		node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].tmpResult,Players[1].tmpResult,Players[2].tmpResult,Players[3].tmpResult), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+		if self.locationInPlayedCard == 0:
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].result,Players[1].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+		elif self.locationInPlayedCard == 1:
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[1].result,Players[0].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+		elif self.locationInPlayedCard == 2:
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[2].result,Players[1].result,Players[0].result,Players[3].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+		else:
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[3].result,Players[1].result,Players[2].result,Players[0].result), (26,26,26,26), 0), lookAhead, [20000], self.isPlayHeart)
+
 		retcard = None
 		for child in node.childNodes:
 			if child.valueTaken == node.valueTaken:
@@ -107,7 +115,7 @@ class Max:
 
 	def MaxTree(self, maxHand, opponentHand, playedCards, node, depth, nodeDepth, heartsPlayed):	#positionInRound index 0, 0 is this player
 		if depth == 0 or nodeDepth <= 0 or (len(maxHand) == 0 and len(opponentHand) == 0):
-			node.v = node.score
+			node.valueTaken = node.score
 			return node
 		playableCards = opponentHand
 		if node.player == 0:
@@ -138,20 +146,27 @@ class Max:
 			if node.childNodes[len(node.childNodes) - 1].valueTaken[node.player] < node.valueTaken[node.player]:
 				node.valueTaken = node.childNodes[len(node.childNodes) - 1].valueTaken
 			elif node.childNodes[len(node.childNodes) - 1].valueTaken[node.player] == node.valueTaken[node.player]:	#tie breaker
-				biggest = 0
-				for i in range(0,4):
-					if i == node.player:
-						continue
-					if node.valueTaken[i] > biggest:
-						biggest = node.valueTaken[i]
-				for i in range(0,4):
-					if i == node.childNodes[len(node.childNodes) - 1].player:
-						continue
-					if node.childNodes[len(node.childNodes) - 1].valueTaken[i] > biggest:
-						node.valueTaken = node.childNodes[len(node.childNodes) - 1].valueTaken
-						break
+				if self.findHowFarBehindLead(node.childNodes[len(node.childNodes) - 1].valueTaken, node.player) < self.findHowFarBehindLead(node.valueTaken, node.player):
+					node.valueTaken = node.childNodes[len(node.childNodes) - 1].valueTaken
 		return node
 
+	def findHowFarBehindLead(self, scores, player):
+		behind = 0
+		isBehind = False
+		for i in range(0,4):
+			if i == player:
+				continue
+			elif scores[player] > scores[i]:
+				isBehind = True
+				behind = max(behind, scores[player] - scores[i])
+		if not isBehind:
+			for i in range(0,4):
+				if i == player:
+					continue
+				elif scores[player] < scores[i]:
+					behind = max(behind, scores[player] - scores[i])
+		return behind
+		
 
 	def nextPlayer(self, currentPlayer):
 		if currentPlayer == 3:

@@ -44,8 +44,8 @@ class background:
 		self.player3=None
 		self.player4=None
 		self.playerName=[]
-		self.playerName.append("max")
 		self.playerName.append("paranoid")
+		self.playerName.append("max")
 		self.playerName.append("rand1")
 		self.playerName.append("rand2")
 	
@@ -264,8 +264,8 @@ class background:
 			resultPlayer3=self.player3.result
 			resultPlayer4=self.player4.result
 		
-		self.player1=Max(self.playerName[0],0);
-		self.player2=Paranoid(self.playerName[1],1);
+		self.player1=Paranoid(self.playerName[0],0);
+		self.player2=Max(self.playerName[1],1);
 		self.player3=Player(self.playerName[2],2);
 		self.player4=Player(self.playerName[3],3)
 		
