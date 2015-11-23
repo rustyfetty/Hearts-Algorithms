@@ -32,7 +32,11 @@
 
 <p>The max<sup>n</sup> algorithm, created by Lockhardt and Irani, is a tree search-type algorithm. It assumes that all players are trying to maximize their own personal score. The crucial point in writing this algorithm is creating good tie-breaking strategies. The downside to the max<sup>n</sup> algorithm is that it can't easily be pruned.</p>
 
+<p><img src="Hearts-Algorithms/Photos/MaxTree.jpg" align="left" height="300" width="1000"></p>
+
 <p>The paranoid algorithm, created by Sturtevant and Korf, is a minimax algorithm. This algorithm assumes all players are trying to give it the worst score possible, so it must pick a branch that has the best return for itself. The thing that give the paranoid algorithm its edge over the max<sup>n</sup> algorithm is it can use alpha-beta pruning. The downside is if you search too far into the tree, the algorithm can become worse.</p>
+
+<p><img src="Photos/ParanoidTree.png" align="left" height="300" width="1000"></p>
 
 <h3>
 <a id="the-reason-why" class="anchor" href="#the-reason-why" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Reason Why</h3>
