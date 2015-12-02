@@ -49,6 +49,10 @@
 <p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/ParanoidTree.png" alt="">
 (A downward triangle stands for a min player, and an upward triangle stands for a max player. The number in each node stands for the player, and the number outside each node stands for the score that node represents.)</p>
 
+<p>The two algorithms use depth first search on a tree of possible game outcomes. The number of possibilities in the game of hearts limits the depth each algorithm can search. This is where the paranoid algorithm has an advantage of the max<sup>n</sup>, because it can do alpha-beta pruning it can search deeper into the tree.</p>
+
+<p>To test these algorithms I will be recording the time it take to finish the algorithm, and the average score of each head that is dealt. The graphs above are from 30 games with a maximum node search 100000.</p>
+
 <h3>
 <a id="the-reason-why" class="anchor" href="#the-reason-why" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Reason Why</h3>
 
