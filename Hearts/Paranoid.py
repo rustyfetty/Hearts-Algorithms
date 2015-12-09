@@ -46,9 +46,9 @@ class Paranoid:
 		self.calculateTime = time.time()
 		node = None
 		if len(cardInGround) == 0:
-			node = self.ParanoidTree(paranoidHand, opponentHand, [], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [40000], self.isPlayHeart)
+			node = self.ParanoidTree(paranoidHand, opponentHand, [], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [200000], self.isPlayHeart)
 		else:
-			node = self.ParanoidTree(paranoidHand, opponentHand, [cardInGround[0][0]], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [40000], self.isPlayHeart)
+			node = self.ParanoidTree(paranoidHand, opponentHand, [cardInGround[0][0]], ParanoidNode(True, None, 0, 26, 0, 26), lookAhead, [200000], self.isPlayHeart)
 		retcard = None
 		for child in node.childNodes:
 			if child.v == node.v:
@@ -119,6 +119,8 @@ class Paranoid:
 			playable = []
 			playable = self.playablePlayerCards(paranoidHand, len(playedCards) == 0, None if len(playedCards) == 0 else playedCards[0], heartsPlayed)
 			for card in playable:
+				if nodeDepth[0] < 1:
+					break
 				newNode = ParanoidNode(False, card, node.score, 0, node.alpha, node.beta)
 				played = list(playedCards)
 				played.append(card)
@@ -131,6 +133,8 @@ class Paranoid:
 				if len(played) == 0 and newNode.roundWinner == 0:
 					playable = self.playablePlayerCards(hand, True, None, heartsPlayed or card.type == cardType.Hearts)
 					for card in playable:
+						if nodeDepth[0] < 1:
+							break
 						nodeDepth[0] -= 1
 						newHand = list(hand)
 						newHand.remove(card)

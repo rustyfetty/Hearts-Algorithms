@@ -47,13 +47,13 @@ class Max:
 		node = None
 		
 		if self.locationInPlayedCard == 0:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].result,Players[1].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[0].result,Players[1].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [200000], self.isPlayHeart)
 		elif self.locationInPlayedCard == 1:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[1].result,Players[0].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[1].result,Players[0].result,Players[2].result,Players[3].result), (26,26,26,26), 0), lookAhead, [200000], self.isPlayHeart)
 		elif self.locationInPlayedCard == 2:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[2].result,Players[1].result,Players[0].result,Players[3].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[2].result,Players[1].result,Players[0].result,Players[3].result), (26,26,26,26), 0), lookAhead, [200000], self.isPlayHeart)
 		else:
-			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[3].result,Players[1].result,Players[2].result,Players[0].result), (26,26,26,26), 0), lookAhead, [40000], self.isPlayHeart)
+			node = self.MaxTree(maxHand, opponentHand, [] if len(cardInGround) == 0 else [cardInGround[0][0]], MaxNode(None, (Players[3].result,Players[1].result,Players[2].result,Players[0].result), (26,26,26,26), 0), lookAhead, [200000], self.isPlayHeart)
 
 		retcard = None
 		for child in node.childNodes:
@@ -61,7 +61,7 @@ class Max:
 				retcard = child.cardPlayed
 				break
 
-		if retcard.type == cardType.Hearts:
+		if retcard != None and retcard.type == cardType.Hearts:
 			self.isPlayHeart == True
 
 		self.calculateTime = time.time() - self.calculateTime

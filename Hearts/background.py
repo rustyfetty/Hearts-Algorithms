@@ -45,10 +45,10 @@ class background:
 		self.player3=None
 		self.player4=None
 		self.playerName=[]
-		self.playerName.append("paranoid")
-		self.playerName.append("max")
+		self.playerName.append("paranoid1")
 		self.playerName.append("rand1")
 		self.playerName.append("rand2")
+		self.playerName.append("rand3")
 		self.directory = strftime("%a, %d %b %Y %H;%M;%S", gmtime())
 		os.makedirs(self.directory)
 		self.scoreFile = open(self.directory + "\score.csv", 'w')
@@ -102,10 +102,10 @@ class background:
 				print ""
 				print ""
 				print ""
-				print self.player1.name," get ",self.player1.result," point"
-				print self.player2.name," get ",self.player2.result," point"
-				print self.player3.name," get ",self.player3.result," point"
-				print self.player4.name," get ",self.player4.result," point"
+				print self.player1.name," got ",self.player1.result," point"
+				print self.player2.name," got ",self.player2.result," point"
+				print self.player3.name," got ",self.player3.result," point"
+				print self.player4.name," got ",self.player4.result," point"
 				print ""
 				print ""
 				print ""
@@ -278,7 +278,7 @@ class background:
 			resultPlayer4=self.player4.result
 		
 		self.player1=Paranoid(self.playerName[0],0);
-		self.player2=Max(self.playerName[1],1);
+		self.player2=Player(self.playerName[1],1);
 		self.player3=Player(self.playerName[2],2);
 		self.player4=Player(self.playerName[3],3)
 		
