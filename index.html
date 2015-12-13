@@ -19,53 +19,85 @@
     </section>
 
     <section class="main-content">
-      <h3>
+      <h1>
 <a id="paranoid-vs-maxn" class="anchor" href="#paranoid-vs-maxn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paranoid vs. Max<sup>n</sup>
-</h3>
+</h1>
 
 <p>Two common multiplayer algorithms are the paranoid (Sturtevant and Korf, 2000) and the max<sup>n</sup> (Lockhardt and Irani, 1986). The question I have is, which will be better in a game of Hearts?</p>
 
-<h3>
-<a id="how-im-doing-so-far" class="anchor" href="#how-im-doing-so-far" aria-hidden="true"><span class="octicon octicon-link"></span></a>How I'm Doing So Far</h3>
+<h2>
+<a id="results" class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
 
-<p>The graphs below show how my algorithms are doing so far.</p>
-
-<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/Scores30Games100000.png" alt=""></p>
-
-<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/AverageTimePerMove30Games100000.png" alt=""></p>
+<p>The graphs below show how my algorithms did after 1000 games. The average game lasted 11.5 hands, and consists of 13 moves. Each algorithm search up to 200000 nodes.</p>
 
 <h3>
-<a id="about-this-project" class="anchor" href="#about-this-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>About This Project</h3>
+<a id="average-scores" class="anchor" href="#average-scores" aria-hidden="true"><span class="octicon octicon-link"></span></a>Average Scores</h3>
+
+<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/AverageScore.png" alt="">
+This graph shows the average score and standard deviation of each algorithm. The paranoid algorithm beats the max<sup>n</sup> by a small margin.</p>
+
+<h3>
+<a id="average-speed-of-each-move" class="anchor" href="#average-speed-of-each-move" aria-hidden="true"><span class="octicon octicon-link"></span></a>Average Speed of each Move</h3>
+
+<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/MoveSpeed.png" alt="">
+The graph shows the average time and standard deviation of the time it took each algorithm to complete its move. It is interesting that during the last five moves the paranoid algorithm becomes faster than the max<sup>n</sup>.</p>
+
+<h3>
+<a id="average-cpu-time" class="anchor" href="#average-cpu-time" aria-hidden="true"><span class="octicon octicon-link"></span></a>Average CPU Time</h3>
+
+<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/AverageCpu.png" alt="">
+You can see from the graph that the max<sup>n</sup> is about 1.7 times faster than the paranoid algorithm. This could be due to the simplicity of the way I wrote the max<sup>n</sup> algorithm or the complexity of the paranoid.</p>
+
+<h3>
+<a id="statistical-values" class="anchor" href="#statistical-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Values</h3>
+
+<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/TAndPValues.png" alt="">
+From the values seen above we can see that for either of the algorithms vs a random player, we do not have statistically good probability. While for paranoid vs max<sup>n</sup> we are 97.14% confident in the data we collected, meaning that the paranoid algorithm is slightly better than the max<sup>n</sup>.</p>
+
+<h2>
+<a id="about-this-project" class="anchor" href="#about-this-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>About This Project</h2>
 
 <p>The purpose of this project is to find if the paranoid or max<sup>n</sup> algorithm is the better player at Hearts. The project contains three types of players: paranoid, max<sup>n</sup>, and random. With these three players, I will be able to evaluate the playing capabilities of each algorithm.</p>
 
 <p>The max<sup>n</sup> algorithm, created by Lockhardt and Irani, is a tree search-type algorithm. It assumes that all players are trying to maximize their own personal score. The crucial point in writing this algorithm is creating good tie-breaking strategies. The downside to the max<sup>n</sup> algorithm is that it can't easily be pruned.</p>
+
+<h3>
+<a id="maxn" class="anchor" href="#maxn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max<sup>n</sup>
+</h3>
 
 <p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/MaxTree.png" alt="">
 (The number in each node stands for the player. Each node contains a tuple, where the n<sup>th</sup> item stands for the n<sup>th</sup> player's score.)</p>
 
 <p>The paranoid algorithm, created by Sturtevant and Korf, is a minimax algorithm. This algorithm assumes all players are trying to give it the worst score possible, so it must pick a branch that has the best return for itself. The thing that give the paranoid algorithm its edge over the max<sup>n</sup> algorithm is it can use alpha-beta pruning. The downside is if you search too far into the tree, the algorithm can become worse.</p>
 
+<h3>
+<a id="paranoid-tree" class="anchor" href="#paranoid-tree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paranoid Tree</h3>
+
 <p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/ParanoidTree.png" alt="">
 (A downward triangle stands for a min player, and an upward triangle stands for a max player. The number in each node stands for the player, and the number outside each node stands for the score that node represents.)</p>
 
 <p>The two algorithms use depth first search on a tree of possible game outcomes. The number of possibilities in the game of hearts limits the depth each algorithm can search. This is where the paranoid algorithm has an advantage of the max<sup>n</sup>, because it can do alpha-beta pruning it can search deeper into the tree.</p>
 
-<p>To test these algorithms I will be recording the time it take to finish the algorithm, and the average score of each head that is dealt. The graphs above are from 30 games with a maximum node search of 100000 nodes.</p>
+<p>To test these algorithms I recorded the time it took to finish the algorithm, and the average score of each hand that was dealt. The table below shows the brackets in which the algorithms competed. Each bracket consisted of 100 games.</p>
+
+<h3>
+<a id="bracket" class="anchor" href="#bracket" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bracket</h3>
+
+<p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/Brackets.png" alt=""></p>
 
 <h3>
 <a id="the-reason-why" class="anchor" href="#the-reason-why" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Reason Why</h3>
 
 <p>I wanted to take up this project because most of the good game algorithms are for two-player games. While I don't think I will have any breakthroughs for multiplayer game algorithms, I can find which one of these algorithms is better.</p>
 
-<h3>
-<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h3>
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
 
 <p>Russell Fetty (<a href="https://github.com/rustyfetty" class="user-mention">@rustyfetty</a>)
 Thank you to the creator of PyHearts for a platform from which to begin.</p>
 
-<h3>
-<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h3>
+<h2>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
 
 <p><a href="http://webdocs.cs.ualberta.ca/%7Enathanst/papers/comparison_algorithms.pdf">http://webdocs.cs.ualberta.ca/~nathanst/papers/comparison_algorithms.pdf</a>
 <a href="https://dke.maastrichtuniversity.nl/m.winands/documents/BestReplySearch.pdf">https://dke.maastrichtuniversity.nl/m.winands/documents/BestReplySearch.pdf</a>
