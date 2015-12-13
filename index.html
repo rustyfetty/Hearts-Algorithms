@@ -52,9 +52,13 @@ You can see from the graph that the max<sup>n</sup> is about 1.7 times faster th
 <a id="statistical-values" class="anchor" href="#statistical-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Values</h3>
 
 <p><img src="https://raw.githubusercontent.com/rustyfetty/Hearts-Algorithms/master/Photos/TAndPValues.png" alt="">
-From the values seen above, we can see that for either of the algorithms vs. a random player, we do not have statistically good probability. We are 97.14% confident in the data we collected for paranoid vs. max<sup>n</sup>, meaning that the paranoid algorithm is slightly better than the max<sup>n</sup>.</p>
+From the values seen above, we can see that for either of the algorithms vs. a random player, we do not have statistically good probability. We are 97.14% confident in the data we collected for paranoid vs. max<sup>n</sup>, meaning that the paranoid algorithm is slightly better than the max<sup>n</sup>. This is most likely due to the fact that the paranoid algorithm can use alpha-beta pruning to search further than the max<sup>n</sup> algorithm. This is what most of the reference that I have linked below suggest. I also wonder if it could be a result of the mind-set of each algorithm. On the one hand you have the paranoid algorithm which is a defensive player, and on the other you have the max<sup>n</sup> algorithm as an aggressive player. With the paranoid algorithm verses random we have a 91.1% chance of reproducing my results. While this is not considered statically relevant, it is close. This leads me to believe that the paranoid algorithm mind-set of defensiveness is beneficial even in a random environment. If we look at the max<sup>n</sup> algorithm verses random we only have a 83.1% chance of reproducing the results. This shows me that it is not anywhere near consistent with a random player. I believe this is because the max<sup>n</sup> algorithm is expecting all the other players to think like itself. This makes it unadaptable, and not prepared for play that are outside its own thinking, while the paranoid algorithm's defensiveness makes it ready for those types of move. I believe this is also another reason the paranoid algorithm is better at the game of Heart than the max<sup>n</sup> algorithm.</p>
 
-<p><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=GdF2tfNVtck%0A" target="_blank"><img src="http://img.youtube.com/vi/GdF2tfNVtck/0.jpg" alt="Algorithms Playing" width="240" height="180" border="10"></a></p>
+<h2>
+<a id="watch-it-play" class="anchor" href="#watch-it-play" aria-hidden="true"><span class="octicon octicon-link"></span></a>Watch It Play</h2>
+
+<p>2 Paranoids vs 2 Max<sup>n</sup>
+<a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=GdF2tfNVtck%0A" target="_blank"><img src="http://img.youtube.com/vi/GdF2tfNVtck/0.jpg" alt="Algorithms Playing" width="240" height="180" border="10"></a></p>
 
 <h2>
 <a id="about-this-project" class="anchor" href="#about-this-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>About This Project</h2>
